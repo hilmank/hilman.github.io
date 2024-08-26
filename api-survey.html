@@ -1,0 +1,818 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>Survey API Docs</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI Variable Display", "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-default_background {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-default_background {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 237, 214, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-uiBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-transparentGray { background-color: rgba(227, 226, 224, 0); }
+.select-value-color-translucentGray { background-color: rgba(0, 0, 0, 0.06); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(249, 228, 188, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="ea2d0812-bfff-494d-95e8-03def6de099b" class="page sans"><header><h1 class="page-title">Survey API Docs</h1><p class="page-description"></p></header><div class="page-body"><p id="02089eb4-3e39-4bf6-9e10-13d316fddaba" class="">
+</p><hr id="6aec2ac4-f58f-450e-b360-612490f53f81"/><ul id="c5ea51e3-97cd-498d-be72-a5f418b41df5" class="toggle"><li><details open=""><summary><code><strong>[GET]</strong></code><strong> Daftar Jenis Kuisioner</strong></summary><table id="0d627ddf-ff9d-4a77-a3c9-d53d2875b587" class="simple-table"><tbody><tr id="cf324a9d-780e-4a13-af17-4ae9e0be635a"><th id="P]ID" class="simple-table-header-color simple-table-header" style="width:155px">Description</th><td id="^oWA" class="" style="width:651px">Endpoint untuk menampilkan jenis kuisioner yang aktif</td></tr><tr id="09dc9fdc-5bca-402d-841d-7626baa14250"><th id="P]ID" class="simple-table-header-color simple-table-header" style="width:155px">URL</th><td id="^oWA" class="" style="width:651px"><a href="https://survey.satudata.mubakab.go.id/api-desa">https://survey.satudata.mubakab.go.id/api-desa</a>/GetJenisKuisioners</td></tr><tr id="919b8798-63f5-44b5-8519-7c00deecae3c"><th id="P]ID" class="simple-table-header-color simple-table-header" style="width:155px">Auth Required</th><td id="^oWA" class="" style="width:651px">Authorization<strong> </strong>Header</td></tr></tbody></table><table id="030a0e71-b67a-4181-aa1d-c8bac00952a4" class="simple-table"><thead class="simple-table-header"><tr id="62b36d7a-36a8-4168-9478-c69a2de7d4d8"><th id="Xkj@" class="simple-table-header-color simple-table-header" style="width:162px">Paramater</th><th id="MMh{" class="simple-table-header-color simple-table-header" style="width:85px">Type </th><th id="YtDk" class="simple-table-header-color simple-table-header" style="width:86px">Required</th><th id="rNPI" class="simple-table-header-color simple-table-header" style="width:335px">Description</th></tr></thead><tbody><tr id="8cdb8fc0-17d0-4c99-9ee0-4860ae4fb745"><td id="Xkj@" class="" style="width:162px"><code>header params</code></td><td id="MMh{" class="" style="width:85px"></td><td id="YtDk" class="" style="width:86px"></td><td id="rNPI" class="" style="width:335px"></td></tr><tr id="de8e8ad3-7214-4264-ba5d-f8e36272e4d2"><td id="Xkj@" class="" style="width:162px">desa-cantik-api-key</td><td id="MMh{" class="" style="width:85px">string</td><td id="YtDk" class="" style="width:86px">true</td><td id="rNPI" class="" style="width:335px">Api-Key yang diperoleh dari Dinkominfo Muba</td></tr><tr id="ec4c8102-d2d5-4cc7-8ee9-8b2095e00410"><td id="Xkj@" class="" style="width:162px"><code>url params</code></td><td id="MMh{" class="" style="width:85px"></td><td id="YtDk" class="" style="width:86px"></td><td id="rNPI" class="" style="width:335px"></td></tr><tr id="b426f39a-23f3-4581-a87a-fd7ef234ae4f"><td id="Xkj@" class="" style="width:162px"></td><td id="MMh{" class="" style="width:85px"></td><td id="YtDk" class="" style="width:86px"></td><td id="rNPI" class="" style="width:335px"></td></tr></tbody></table><ul id="fb502825-0292-40ad-949c-5375544211d5" class="toggle"><li><details open=""><summary><strong>✅ Response 200</strong></summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4b1d0912-a2d4-447b-89db-761e8ce53910" class="code"><code class="language-JSON">[
+  {
+	  &quot;Id&quot;: &quot;string&quot;,
+	  &quot;Nama&quot;: &quot;string&quot;
+	}
+]</code></pre></details></li></ul><ul id="d4aed0d9-14b6-4e40-89f3-d4043ba5cec3" class="toggle"><li><details open=""><summary><strong>✅ Response 202</strong></summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="d0150891-f347-4c27-b7bd-6dcc30bcbb56" class="code"><code class="language-JavaScript">{}</code></pre><p id="72804fb2-0199-4ac9-b4f2-ab9d8cb1da34" class="">
+</p></details></li></ul><ul id="aac95405-822a-44e0-a752-1a9075e723ce" class="toggle"><li><details open=""><summary><strong>✅ Response 400</strong></summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3ae780f6-88b7-446d-9f23-a9673c98b0cf" class="code"><code class="language-JSON">{
+    &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc9110#section-15.5.1&quot;,
+    &quot;title&quot;: &quot;One or more validation errors occurred.&quot;,
+    &quot;status&quot;: 400,
+    &quot;errors&quot;: {
+        &quot;kuisionerId&quot;: [
+            &quot;The kuisionerId field is required.&quot;
+        ],
+        &quot;kodeKecamatan&quot;: [
+            &quot;The kodeKecamatan field is required.&quot;
+        ]
+    },
+    &quot;traceId&quot;: &quot;00-e8c263984cdf282a4b4c7bf3dfab84b0-b3bd1465f184b8ad-00&quot;
+}</code></pre><p id="e9fa201a-40b8-44d8-afe1-33bf81a10bb7" class="">
+</p></details></li></ul><ul id="07ca1838-0ed8-4f98-b8c4-2b8a39742a84" class="toggle"><li><details open=""><summary><strong>✅ Response 401</strong></summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="c5a1501e-4e31-4aeb-b02c-a8734e42094e" class="code"><code class="language-Plain Text">API Key was not provided.</code></pre><p id="40734736-61a6-496a-a464-4126195ee81b" class="">
+</p></details></li></ul><ul id="99e48b66-e7a4-4862-8366-38b4ca0512f9" class="toggle"><li><details open=""><summary><strong>✅ Response 403</strong></summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3603f67b-2c83-4ccb-acaf-8e4c8bcc193f" class="code"><code class="language-Plain Text">Unauthorized client.</code></pre><p id="d6072f41-5148-416a-9ff7-1f37457a5b74" class="">
+</p></details></li></ul></details></li></ul><ul id="61a2c4a3-414c-488f-951d-4ed3589967cf" class="toggle"><li><details open=""><summary><code><strong>[GET]</strong></code><strong> Daftar Responden Berdasarkan Kecamatan</strong></summary><table id="d2a7f79a-23cd-418a-8f87-22d244474303" class="simple-table"><tbody><tr id="23d7e11d-35a0-4d3a-8faf-8019d8dbd963"><th id="P]ID" class="simple-table-header-color simple-table-header" style="width:155px">Description</th><td id="^oWA" class="" style="width:651px">Endpoint untuk menampilkan responden berdasarkan kecamatan</td></tr><tr id="3940a39d-a37f-4f77-b766-3e478f51b167"><th id="P]ID" class="simple-table-header-color simple-table-header" style="width:155px">URL</th><td id="^oWA" class="" style="width:651px"><a href="https://survey.satudata.mubakab.go.id/api-desa">https://survey.satudata.mubakab.go.id/api-desa</a>/GetRespondensByKecamatan</td></tr><tr id="38e794b2-47e4-4595-aafa-d6101221f64f"><th id="P]ID" class="simple-table-header-color simple-table-header" style="width:155px">Auth Required</th><td id="^oWA" class="" style="width:651px">Authorization<strong> </strong>Header</td></tr></tbody></table><table id="287562d1-f2b4-4481-9a79-2c434888926d" class="simple-table"><thead class="simple-table-header"><tr id="6e1b25b4-6007-4a10-b663-b34c62aa142f"><th id="Xkj@" class="simple-table-header-color simple-table-header" style="width:162px">Paramater</th><th id="MMh{" class="simple-table-header-color simple-table-header" style="width:85px">Type </th><th id="YtDk" class="simple-table-header-color simple-table-header" style="width:86px">Required</th><th id="rNPI" class="simple-table-header-color simple-table-header" style="width:335px">Description</th></tr></thead><tbody><tr id="b8a9dcda-05cd-4b10-b927-c64cbdee73e0"><td id="Xkj@" class="" style="width:162px"><code>header params</code></td><td id="MMh{" class="" style="width:85px"></td><td id="YtDk" class="" style="width:86px"></td><td id="rNPI" class="" style="width:335px"></td></tr><tr id="835683a7-65ee-4bd1-be8a-b88857cf4db3"><td id="Xkj@" class="" style="width:162px">desa-cantik-api-key</td><td id="MMh{" class="" style="width:85px">string</td><td id="YtDk" class="" style="width:86px">true</td><td id="rNPI" class="" style="width:335px">Api-Key yang diperoleh dari Dinkominfo Muba</td></tr><tr id="3521bcd4-e93c-40c9-8eb0-d3fd514f82f4"><td id="Xkj@" class="" style="width:162px"><code>url params</code></td><td id="MMh{" class="" style="width:85px"></td><td id="YtDk" class="" style="width:86px"></td><td id="rNPI" class="" style="width:335px"></td></tr><tr id="dc6eefc2-eedf-430f-a31c-e03a0d40b447"><td id="Xkj@" class="" style="width:162px">kuisionerId</td><td id="MMh{" class="" style="width:85px">string</td><td id="YtDk" class="" style="width:86px">true</td><td id="rNPI" class="" style="width:335px">Id Kuisioner</td></tr><tr id="cef2d426-89db-48bf-88a7-600f75686ea6"><td id="Xkj@" class="" style="width:162px">kodeKecamatan</td><td id="MMh{" class="" style="width:85px">string</td><td id="YtDk" class="" style="width:86px">true</td><td id="rNPI" class="" style="width:335px">Kode Kecamatan</td></tr></tbody></table><ul id="bb4903f1-128c-4abd-9ff3-ecd8dae9b538" class="toggle"><li><details open=""><summary><strong>✅ Response 200</strong></summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="af5631e8-c05b-4e9d-a9c0-b1bd6470fcbd" class="code"><code class="language-JSON">[
+  {
+    &quot;Id&quot;: &quot;string&quot;,
+    &quot;Kuisionerid&quot;: &quot;string&quot;,
+    &quot;Kodedata&quot;: &quot;string&quot;,
+    &quot;Nama&quot;: &quot;string&quot;,
+    &quot;Alamat&quot;: &quot;string&quot;,
+    &quot;Notelpon&quot;: &quot;string&quot;,
+    &quot;Nohandphone&quot;: &quot;string&quot;,
+    &quot;Email&quot;: &quot;string&quot;,
+    &quot;Catatan&quot;: &quot;string&quot;,
+    &quot;Desa&quot;: &quot;string&quot;,
+    &quot;Kecamatan&quot;: &quot;string&quot;,
+    &quot;Longitude&quot;: 0,
+    &quot;Latitude&quot;: 0
+  }
+]</code></pre></details></li></ul><ul id="c111704c-df94-4a92-967f-ce6ecfc0cfd4" class="toggle"><li><details open=""><summary><strong>✅ Response 202</strong></summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="3b955d84-9984-4b83-b451-dea47a52a0cc" class="code"><code class="language-JavaScript">{}</code></pre><p id="a9f9fb96-0bd9-4e21-a17d-fe9c57aa9563" class="">
+</p></details></li></ul><ul id="776ed28f-66ee-4c5a-a4b5-d59ee3148823" class="toggle"><li><details open=""><summary><strong>✅ Response 400</strong></summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="25891e37-b4b7-4fa8-83f4-c5882ed45617" class="code"><code class="language-JSON">{
+    &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc9110#section-15.5.1&quot;,
+    &quot;title&quot;: &quot;One or more validation errors occurred.&quot;,
+    &quot;status&quot;: 400,
+    &quot;errors&quot;: {
+        &quot;kuisionerId&quot;: [
+            &quot;The kuisionerId field is required.&quot;
+        ],
+        &quot;kodeKecamatan&quot;: [
+            &quot;The kodeKecamatan field is required.&quot;
+        ]
+    },
+    &quot;traceId&quot;: &quot;00-e8c263984cdf282a4b4c7bf3dfab84b0-b3bd1465f184b8ad-00&quot;
+}</code></pre><p id="dab87e5e-41fd-4d82-b3f7-89fc97271092" class="">
+</p></details></li></ul><ul id="cf8e2e87-717f-47f9-bb7a-69f37f72d2b5" class="toggle"><li><details open=""><summary><strong>✅ Response 401</strong></summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="353facec-911c-4ffd-905d-3130d205077a" class="code"><code class="language-Plain Text">API Key was not provided.</code></pre><p id="0a28779f-6cfb-4079-bb62-e457e913764e" class="">
+</p></details></li></ul><ul id="67fceb8b-6ed5-449d-a996-5ca62f9f0efc" class="toggle"><li><details open=""><summary><strong>✅ Response 403</strong></summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="4cec6637-8598-402c-ae65-b0876dbabd3f" class="code"><code class="language-Plain Text">Unauthorized client.</code></pre><p id="393b8a84-7053-413b-9cf5-ce452c450e11" class="">
+</p></details></li></ul></details></li></ul><ul id="02f20a7d-a7e4-4f2a-976d-d56287affe0e" class="toggle"><li><details open=""><summary><code><strong>[GET]</strong></code><strong> Daftar Responden Berdasarkan Desa/Kelurahan</strong></summary><table id="ed68260f-1fa9-4f75-83dc-7e9662c99bbc" class="simple-table"><tbody><tr id="bc43f706-0ab2-4e53-840b-c399003d4878"><th id="P]ID" class="simple-table-header-color simple-table-header" style="width:155px">Description</th><td id="^oWA" class="" style="width:651px">Endpoint untuk menampilkan responden berdasarkan desa/kelurahan</td></tr><tr id="2ea9c972-22df-4d7b-b0b6-4b763583a69b"><th id="P]ID" class="simple-table-header-color simple-table-header" style="width:155px">URL</th><td id="^oWA" class="" style="width:651px"><a href="https://survey.satudata.mubakab.go.id/api-desa">https://survey.satudata.mubakab.go.id/api-desa</a>/GetRespondensByDesa</td></tr><tr id="66bd55a1-9dc3-411e-9601-30ee540b5f2c"><th id="P]ID" class="simple-table-header-color simple-table-header" style="width:155px">Auth Required</th><td id="^oWA" class="" style="width:651px">Authorization<strong> </strong>Header</td></tr></tbody></table><table id="6f985259-3d10-4836-8663-86eff168f669" class="simple-table"><thead class="simple-table-header"><tr id="13430f03-0360-483c-a8c7-f2688fcbc375"><th id="Xkj@" class="simple-table-header-color simple-table-header" style="width:162px">Paramater</th><th id="MMh{" class="simple-table-header-color simple-table-header" style="width:85px">Type </th><th id="YtDk" class="simple-table-header-color simple-table-header" style="width:86px">Required</th><th id="rNPI" class="simple-table-header-color simple-table-header" style="width:335px">Description</th></tr></thead><tbody><tr id="926b18a2-a6a0-4156-aa97-84a33d9bc18b"><td id="Xkj@" class="" style="width:162px"><code>header params</code></td><td id="MMh{" class="" style="width:85px"></td><td id="YtDk" class="" style="width:86px"></td><td id="rNPI" class="" style="width:335px"></td></tr><tr id="e879d924-95aa-4171-9ace-4f59cbc2dae5"><td id="Xkj@" class="" style="width:162px">desa-cantik-api-key</td><td id="MMh{" class="" style="width:85px">string</td><td id="YtDk" class="" style="width:86px">true</td><td id="rNPI" class="" style="width:335px">Api-Key yang diperoleh dari Dinkominfo Muba</td></tr><tr id="babb06bc-169c-4d83-b005-bf7d6618068a"><td id="Xkj@" class="" style="width:162px"><code>url params</code></td><td id="MMh{" class="" style="width:85px"></td><td id="YtDk" class="" style="width:86px"></td><td id="rNPI" class="" style="width:335px"></td></tr><tr id="33d5972d-39e4-422c-9d0b-b21653059d36"><td id="Xkj@" class="" style="width:162px">kuisionerId</td><td id="MMh{" class="" style="width:85px">string</td><td id="YtDk" class="" style="width:86px">true</td><td id="rNPI" class="" style="width:335px">Id Kuisioner</td></tr><tr id="32d90a44-7106-47c1-b555-4acb93774945"><td id="Xkj@" class="" style="width:162px">kodeDesa</td><td id="MMh{" class="" style="width:85px">string</td><td id="YtDk" class="" style="width:86px">true</td><td id="rNPI" class="" style="width:335px">Kode Desa</td></tr></tbody></table><ul id="426935eb-76a9-479b-aa1f-6a330a7b249e" class="toggle"><li><details open=""><summary><strong>✅ Response 200</strong></summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ef1ae5ae-17dd-48db-a0ef-efbe3f8791d3" class="code"><code class="language-JSON">[
+  {
+    &quot;Id&quot;: &quot;string&quot;,
+    &quot;Kuisionerid&quot;: &quot;string&quot;,
+    &quot;Kodedata&quot;: &quot;string&quot;,
+    &quot;Nama&quot;: &quot;string&quot;,
+    &quot;Alamat&quot;: &quot;string&quot;,
+    &quot;Notelpon&quot;: &quot;string&quot;,
+    &quot;Nohandphone&quot;: &quot;string&quot;,
+    &quot;Email&quot;: &quot;string&quot;,
+    &quot;Catatan&quot;: &quot;string&quot;,
+    &quot;Desa&quot;: &quot;string&quot;,
+    &quot;Kecamatan&quot;: &quot;string&quot;,
+    &quot;Longitude&quot;: 0,
+    &quot;Latitude&quot;: 0
+  }
+]</code></pre></details></li></ul><ul id="3cb2e281-2fbf-406e-b382-c0701a515f6e" class="toggle"><li><details open=""><summary><strong>✅ Response 202</strong></summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="00dd2dc7-ac9f-4311-847e-d3055bd62f4f" class="code"><code class="language-JavaScript">{}</code></pre><p id="ea48321c-79f8-4ced-8489-779064fd4d79" class="">
+</p></details></li></ul><ul id="944cc905-fd36-4b3f-9be3-592a577fed44" class="toggle"><li><details open=""><summary><strong>✅ Response 400</strong></summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="556eca0a-9c89-4c03-95d9-30e56ff567d1" class="code"><code class="language-JSON">{
+    &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc9110#section-15.5.1&quot;,
+    &quot;title&quot;: &quot;One or more validation errors occurred.&quot;,
+    &quot;status&quot;: 400,
+    &quot;errors&quot;: {
+        &quot;kuisionerId&quot;: [
+            &quot;The kuisionerId field is required.&quot;
+        ],
+        &quot;kodeDesa&quot;: [
+            &quot;The kodeDesa field is required.&quot;
+        ]
+    },
+    &quot;traceId&quot;: &quot;00-e8c263984cdf282a4b4c7bf3dfab84b0-b3bd1465f184b8ad-00&quot;
+}</code></pre><p id="9f8499cd-2227-4f39-8e55-5a3494ba2355" class="">
+</p></details></li></ul><ul id="29126a7a-084e-443e-b873-61ecdad8ca76" class="toggle"><li><details open=""><summary><strong>✅ Response 401</strong></summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="6ea7a671-14c1-46dd-a037-35234dbad705" class="code"><code class="language-Plain Text">API Key was not provided.</code></pre><p id="92db8cde-7c10-4067-a4e3-5f02b4f3bed8" class="">
+</p></details></li></ul><ul id="6931d540-adad-4a75-b27a-30d69405a03f" class="toggle"><li><details open=""><summary><strong>✅ Response 403</strong></summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="34afbf52-719a-457b-bb2f-a7f84a2111a0" class="code"><code class="language-Plain Text">Unauthorized client.</code></pre><p id="7aaa33f6-4dda-4530-a34c-c1cfe8d9d300" class="">
+</p></details></li></ul></details></li></ul><ul id="0b855ed6-6d4a-4c88-af23-ea9a524fb8d7" class="toggle"><li><details open=""><summary><code><strong>[GET]</strong></code><strong> Data Responden</strong></summary><table id="45c867a5-fd30-4bcd-9bb2-74eb8756babc" class="simple-table"><tbody><tr id="499bacfc-8426-48b2-9fd5-1fa2195b389d"><th id="P]ID" class="simple-table-header-color simple-table-header" style="width:155px">Description</th><td id="^oWA" class="" style="width:651px">Endpoint untuk menampilkan detail responden</td></tr><tr id="3da28982-d8de-4fd8-87b8-d2434851fb58"><th id="P]ID" class="simple-table-header-color simple-table-header" style="width:155px">URL</th><td id="^oWA" class="" style="width:651px"><a href="https://survey.satudata.mubakab.go.id/api-desa">https://survey.satudata.mubakab.go.id/api-desa</a>/GetRespondenById</td></tr><tr id="656b8390-a0d1-44d2-b9e8-08867c746455"><th id="P]ID" class="simple-table-header-color simple-table-header" style="width:155px">Auth Required</th><td id="^oWA" class="" style="width:651px">Authorization<strong> </strong>Header</td></tr></tbody></table><table id="c478c503-ada7-4f1f-a7cd-17d58ff9f8ff" class="simple-table"><thead class="simple-table-header"><tr id="147f626a-96a2-4d83-b91c-47c3c3672dff"><th id="Xkj@" class="simple-table-header-color simple-table-header" style="width:162px">Paramater</th><th id="MMh{" class="simple-table-header-color simple-table-header" style="width:85px">Type </th><th id="YtDk" class="simple-table-header-color simple-table-header" style="width:86px">Required</th><th id="rNPI" class="simple-table-header-color simple-table-header" style="width:335px">Description</th></tr></thead><tbody><tr id="ef2f3a8e-000f-4105-8dd7-f48d38235d08"><td id="Xkj@" class="" style="width:162px"><code>header params</code></td><td id="MMh{" class="" style="width:85px"></td><td id="YtDk" class="" style="width:86px"></td><td id="rNPI" class="" style="width:335px"></td></tr><tr id="c50e2687-1728-4b0f-83d9-72c96915d047"><td id="Xkj@" class="" style="width:162px">desa-cantik-api-key</td><td id="MMh{" class="" style="width:85px">string</td><td id="YtDk" class="" style="width:86px">true</td><td id="rNPI" class="" style="width:335px">Api-Key yang diperoleh dari Dinkominfo Muba</td></tr><tr id="59f9ed80-3964-4976-b6f8-3737bd2e75a3"><td id="Xkj@" class="" style="width:162px"><code>url params</code></td><td id="MMh{" class="" style="width:85px"></td><td id="YtDk" class="" style="width:86px"></td><td id="rNPI" class="" style="width:335px"></td></tr><tr id="94d12275-e046-4bed-99b3-28d95aa94bf8"><td id="Xkj@" class="" style="width:162px">id</td><td id="MMh{" class="" style="width:85px">string</td><td id="YtDk" class="" style="width:86px">true</td><td id="rNPI" class="" style="width:335px">Id Responden</td></tr></tbody></table><ul id="826dde3f-5538-4b05-941c-fbd92b9db65f" class="toggle"><li><details open=""><summary><strong>✅ Response 200</strong></summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="51ba3d0c-8630-45ff-a9ed-1e0cdf2b61fa" class="code"><code class="language-JSON">{
+  &quot;Id&quot;: &quot;string&quot;,
+  &quot;Kuisionerid&quot;: &quot;string&quot;,
+  &quot;Kodedata&quot;: &quot;string&quot;,
+  &quot;Nama&quot;: &quot;string&quot;,
+  &quot;Alamat&quot;: &quot;string&quot;,
+  &quot;Notelpon&quot;: &quot;string&quot;,
+  &quot;Nohandphone&quot;: &quot;string&quot;,
+  &quot;Email&quot;: &quot;string&quot;,
+  &quot;Catatan&quot;: &quot;string&quot;,
+  &quot;Longitude&quot;: 0,
+  &quot;Latitude&quot;: 0,
+  &quot;Kuisioner&quot;: &quot;string&quot;,
+  &quot;KelompokPertanyaans&quot;: [
+    {
+      &quot;Id&quot;: &quot;string&quot;,
+      &quot;Kode&quot;: &quot;string&quot;,
+      &quot;Teks&quot;: &quot;string&quot;,
+      &quot;Pertanyaans&quot;: [
+        {
+          &quot;PertanyaanId&quot;: &quot;string&quot;,
+          &quot;Kode&quot;: &quot;string&quot;,
+          &quot;Teks&quot;: &quot;string&quot;,
+          &quot;Tipejawaban&quot;: &quot;string&quot;,
+          &quot;Ispertanyaan&quot;: true,
+          &quot;Jawaban&quot;: &quot;string&quot;
+        }
+      ]
+    }
+  ]
+}</code></pre></details></li></ul><ul id="d40f35bf-5251-4ab8-bbb6-4ca76464e047" class="toggle"><li><details open=""><summary><strong>✅ Response 202</strong></summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="183a20b6-578a-4ca7-a43c-47101b4ce51f" class="code"><code class="language-JavaScript">{}</code></pre><p id="e8f6677c-528f-4ebe-a662-3ef234fd18bf" class="">
+</p></details></li></ul><ul id="efef80d6-fe3b-45e1-aea2-6a689be9cbe7" class="toggle"><li><details open=""><summary><strong>✅ Response 400</strong></summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="1ff38e3c-ce9a-4f8f-b44d-dfaa2c56b51b" class="code"><code class="language-JSON">{
+    &quot;type&quot;: &quot;https://tools.ietf.org/html/rfc9110#section-15.5.1&quot;,
+    &quot;title&quot;: &quot;One or more validation errors occurred.&quot;,
+    &quot;status&quot;: 400,
+    &quot;errors&quot;: {
+        &quot;id&quot;: [
+            &quot;The id field is required.&quot;
+        ]
+    },
+    &quot;traceId&quot;: &quot;00-e8c263984cdf282a4b4c7bf3dfab84b0-b3bd1465f184b8ad-00&quot;
+}</code></pre><p id="bdda5d83-ea72-40cc-ba3c-14cb884cf60c" class="">
+</p></details></li></ul><ul id="a8f2a0c0-2e75-4176-932b-7f887ac102b9" class="toggle"><li><details open=""><summary><strong>✅ Response 401</strong></summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="ec75b4cf-afcd-473d-8130-c91fa8b014d9" class="code"><code class="language-Plain Text">API Key was not provided.</code></pre><p id="ac9d3ecc-bb82-413a-9208-9a4817afe2c5" class="">
+</p></details></li></ul><ul id="80690e77-14ae-4a09-acc9-fa48bf0f32c9" class="toggle"><li><details open=""><summary><strong>✅ Response 403</strong></summary><script src="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/prism.min.js" integrity="sha512-7Z9J3l1+EYfeaPKcGXu3MS/7T+w19WtKQY/n+xzmw4hZhJ9tyYmcUS+4QqAlzhicE5LAfMQSF3iFTK9bQdTxXg==" crossorigin="anonymous" referrerPolicy="no-referrer"></script><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/prism/1.29.0/themes/prism.min.css" integrity="sha512-tN7Ec6zAFaVSG3TpNAKtk4DOHNpSwKHxxrsiw4GHKESGPs5njn/0sMCUMl2svV4wo4BK/rCP7juYz+zx+l6oeQ==" crossorigin="anonymous" referrerPolicy="no-referrer"/><pre id="855f4bbb-a6a3-42e2-b60f-1f58b2f56465" class="code"><code class="language-Plain Text">Unauthorized client.</code></pre><p id="6a73cb2a-05a2-4ed0-86f2-9af87996add6" class="">
+</p></details></li></ul></details></li></ul><p id="4eefa6e4-865d-4c57-956d-811d3b1549c1" class="">
+</p><figure id="05199f24-8d1a-4310-94b2-a64cbe7ad941" class="link-to-page"><a href="https://www.notion.so/Dokumentasi-Survey-API-untuk-Desa-Cantik-05199f248d1a431094b2a64cbe7ad941?pvs=21">Dokumentasi Survey API untuk Desa Cantik</a></figure></div></article><span class="sans" style="font-size:14px;padding-top:2em"></span></body></html>
